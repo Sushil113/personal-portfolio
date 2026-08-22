@@ -3,53 +3,50 @@ import { resumeData } from '../data/resumeData';
 
 const Experience = () => {
   return (
-    <section className="py-12 bg-surface/30 min-h-[80vh]">
-      <div className="max-w-4xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="text-4xl font-bold mb-4">Professional <span className="text-gradient">Experience</span></h2>
-          <p className="text-gray-400">My journey as a software developer.</p>
-        </motion.div>
-
-        <div className="space-y-8">
-          {resumeData.experience.map((exp, idx) => (
-            <motion.div
-              key={`${exp.role}-${exp.company}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-surface border border-white/5 p-6 md:p-8 rounded-2xl hover:border-primary/30 transition-colors"
-            >
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{exp.role}</h3>
-                  <h4 className="text-lg text-primary">{exp.company}</h4>
-                </div>
-                <div className="mt-3 md:mt-0">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20 whitespace-nowrap">
-                    {exp.date}
-                  </span>
-                </div>
-              </div>
-              
-              <ul className="space-y-3 text-gray-400 text-sm md:text-base">
-                {exp.bullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="mr-3 mt-1.5 text-primary text-lg leading-none">•</span>
-                    <span className="leading-relaxed">{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      className="w-full py-4"
+    >
+      {/* Signature REST Endpoint Header */}
+      <div className="flex items-center space-x-2.5 mb-8 font-mono">
+        <span className="px-2 py-0.5 text-xs font-semibold rounded-[4px] bg-accent/10 text-accent border border-accent/20">
+          GET
+        </span>
+        <span className="text-sm text-on-surface font-semibold">/experience</span>
       </div>
-    </section>
+
+      <div className="space-y-6">
+        {resumeData.experience.map((exp) => (
+          <div
+            key={`${exp.role}-${exp.company}`}
+            className="bg-surface-raised border border-border p-6 rounded-[6px] hover:border-primary/40 transition-colors"
+          >
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+              <div>
+                <h3 className="text-lg font-semibold text-on-surface mb-1">{exp.role}</h3>
+                <span className="text-sm font-mono text-primary">{exp.company}</span>
+              </div>
+              <div>
+                <span className="inline-flex items-center px-2 py-0.5 rounded-[4px] bg-background text-on-surface-muted text-xs font-mono border border-border whitespace-nowrap">
+                  {exp.date}
+                </span>
+              </div>
+            </div>
+            
+            <ul className="space-y-2 text-sm text-on-surface-muted">
+              {exp.bullets.map((bullet, i) => (
+                <li key={i} className="flex items-start">
+                  <span className="mr-2 text-primary font-mono text-sm leading-none">-</span>
+                  <span className="leading-relaxed">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 
