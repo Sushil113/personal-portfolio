@@ -17,48 +17,58 @@ const Navbar = memo(({ activeTab, setActiveTab }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/10"
+      className="fixed w-full top-0 z-50 bg-background border-b border-border"
     >
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <button onClick={goHome} className="text-xl font-bold text-gradient text-left">
+      <div className="max-w-[720px] mx-auto px-6 h-16 flex items-center justify-between">
+        <button onClick={goHome} className="text-lg font-display font-semibold text-on-surface hover:text-primary transition-colors text-left">
           Sushil.
         </button>
-        <div className="hidden md:flex space-x-2 bg-surface/50 p-1 rounded-full border border-white/5">
+        <div className="hidden md:flex space-x-6 h-full items-center">
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`relative h-full py-2 text-sm font-mono transition-colors ${
                 activeTab === tab.id 
-                  ? 'bg-white/10 text-white shadow-sm' 
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'text-primary font-medium' 
+                  : 'text-on-surface-muted hover:text-on-surface'
               }`}
             >
               {tab.label}
+              {activeTab === tab.id && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"></span>
+              )}
             </button>
           ))}
         </div>
-        <a 
-          href="mailto:sushilramtel113@gmail.com"
-          className="px-5 py-2.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-white transition-all text-sm font-semibold hidden md:block"
+        <button 
+          onClick={() => setActiveTab('contact')}
+          className={`px-4 py-1.5 rounded-[4px] border text-xs font-mono hidden md:block transition-colors ${
+            activeTab === 'contact'
+              ? 'bg-primary text-background border-primary'
+              : 'border-border text-on-surface hover:border-primary hover:text-primary'
+          }`}
         >
           Let's Talk
-        </a>
+        </button>
       </div>
       
       {/* Mobile navigation row */}
-      <div className="md:hidden flex overflow-x-auto px-4 py-3 space-x-2 border-t border-white/5 bg-background">
-        {TABS.map((tab) => (
+      <div className="md:hidden flex overflow-x-auto justify-center px-4 py-2 space-x-6 border-b border-border bg-background">
+        {[...TABS, { id: 'contact', label: "Let's Talk" }].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-1.5 whitespace-nowrap rounded-full text-sm font-medium transition-all ${
+            className={`relative py-1.5 whitespace-nowrap text-sm font-mono transition-colors ${
               activeTab === tab.id 
-                ? 'bg-white/10 text-white shadow-sm border border-white/10' 
-                : 'text-gray-400 hover:text-white bg-surface border border-transparent'
+                ? 'text-primary font-medium' 
+                : 'text-on-surface-muted hover:text-on-surface'
             }`}
           >
             {tab.label}
+            {activeTab === tab.id && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary"></span>
+            )}
           </button>
         ))}
       </div>
