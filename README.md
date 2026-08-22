@@ -1,4 +1,4 @@
-# Sushil Ramtel — Personal Portfolio
+# Sushil Ramtel -- Personal Portfolio
 
 A modern, high-performance personal portfolio website built with **React**, **Tailwind CSS**, and **Framer Motion**. Designed to showcase professional experience, technical skills, and educational background with a clean and elegant user interface.
 
@@ -8,11 +8,12 @@ A modern, high-performance personal portfolio website built with **React**, **Ta
 
 This portfolio is a single-page application (SPA) featuring:
 
-- **Smooth tab-based navigation** — About, Experience, Skills, and Education sections
+- **Smooth tab-based navigation** -- About, Experience, Skills, and Education sections
 - **Animated transitions** powered by Framer Motion
-- **Fully responsive design** — optimized for mobile, tablet, and desktop
-- **Optimized performance** — code-split vendor chunks and lazy-loaded sections
+- **Fully responsive design** -- optimized for mobile, tablet, and desktop
+- **Optimized performance** -- code-split vendor chunks and lazy-loaded sections
 - **Dark-themed aesthetic** with glassmorphism and gradient accents
+- **Automated deployment** via GitHub Actions to GitHub Pages
 
 ---
 
@@ -21,12 +22,12 @@ This portfolio is a single-page application (SPA) featuring:
 | Category         | Technology                                      |
 |------------------|-------------------------------------------------|
 | **Framework**    | React 18                                        |
-| **Build Tool**   | Vite 5                                          |
+| **Build Tool**   | Vite 7                                          |
 | **Styling**      | Tailwind CSS 3                                  |
 | **Animations**   | Framer Motion 11                                |
 | **Icons**        | Lucide React                                    |
 | **PostCSS**      | Autoprefixer                                    |
-| **Deployment**   | GitHub Pages (custom domain via CNAME)          |
+| **Deployment**   | GitHub Pages (via GitHub Actions)               |
 
 ---
 
@@ -48,11 +49,13 @@ personal-portfolio/
 │   ├── App.jsx               # Root component with tab routing & layout
 │   ├── main.jsx              # React DOM entry point
 │   └── index.css             # Global styles and Tailwind directives
+├── .github/
+│   └── workflows/
+│       └── deploy.yml        # GitHub Actions workflow for deployment
 ├── index.html                # HTML entry point
 ├── vite.config.js            # Vite & build configuration
 ├── tailwind.config.js        # Tailwind theme customization
 ├── postcss.config.js         # PostCSS configuration
-├── CNAME                     # Custom domain for GitHub Pages
 └── package.json              # Project dependencies & scripts
 ```
 
@@ -62,10 +65,8 @@ personal-portfolio/
 
 ### Prerequisites
 
-Ensure you have the following installed on your machine:
-
-- **Node.js** — `v18.x` or higher ([Download](https://nodejs.org))
-- **npm** — `v9.x` or higher (bundled with Node.js)
+- **Node.js** -- `v22.x` or higher ([Download](https://nodejs.org))
+- **npm** -- `v10.x` or higher (bundled with Node.js)
 
 ### Installation
 
@@ -104,9 +105,55 @@ Ensure you have the following installed on your machine:
 
 ---
 
+## Deployment
+
+The site is deployed to **GitHub Pages** using a **GitHub Actions** workflow. Every push to `main` triggers an automated build and deploy.
+
+### How It Works
+
+The workflow (`.github/workflows/deploy.yml`) does the following on each push to `main`:
+
+1. Checks out the repository
+2. Sets up Node.js 22
+3. Installs dependencies (`npm install`)
+4. Builds the production bundle (`npm run build`)
+5. Uploads the `dist/` directory as a Pages artifact
+6. Deploys to GitHub Pages
+
+### Setting Up Deployment (First Time)
+
+1. **Configure the Vite base path** -- `vite.config.js` already sets the base to `/personal-portfolio/` to match the GitHub repo name:
+
+   ```js
+   export default defineConfig({
+     base: '/personal-portfolio/',
+     // ...
+   })
+   ```
+
+   If your repo name differs, update `base` to `/<your-repo-name>/`.
+
+2. **Enable GitHub Pages in the repository settings**:
+   - Go to **Settings** > **Pages**
+   - Under **Build and deployment**, set **Source** to **GitHub Actions**
+
+3. **Push to `main`** -- the workflow runs automatically and deploys the site.
+
+4. **Access the live site** at:
+
+   ```
+   https://<your-github-username>.github.io/personal-portfolio/
+   ```
+
+### Redeploying
+
+Every push to the `main` branch triggers a fresh build and deploy automatically. No manual steps required.
+
+---
+
 ## Customization
 
-All portfolio content is managed from a **single data file** — making updates straightforward and clean.
+All portfolio content is managed from a **single data file** -- making updates straightforward and clean.
 
 ### Updating Personal Information
 
@@ -143,9 +190,9 @@ import profileImg from '../../pic/your-photo.jpg';
 
 Vite is configured with **manual chunk splitting** for optimal load performance:
 
-- `vendor-react` — React & ReactDOM
-- `vendor-motion` — Framer Motion
-- `vendor-icons` — Lucide React
+- `vendor-react` -- React & ReactDOM
+- `vendor-motion` -- Framer Motion
+- `vendor-icons` -- Lucide React
 
 Section components (`Experience`, `Skills`, `Education`) are **lazy-loaded** via `React.lazy` and `Suspense`, reducing the initial bundle size significantly.
 
@@ -156,7 +203,7 @@ Section components (`Experience`, `Skills`, `Education`) are **lazy-loaded** via
 **Sushil Ramtel**
 - Email: [sushilramtel113@gmail.com](mailto:sushilramtel113@gmail.com)
 - GitHub: [github.com/Sushil113](https://github.com/Sushil113)
-- Portfolio: [sushil.com](https://sushil.com)
+- Portfolio: [sushil113.github.io/personal-portfolio](https://sushil113.github.io/personal-portfolio/)
 
 ---
 
