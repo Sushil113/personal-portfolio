@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-white selection:bg-primary/30;
+    @apply bg-background text-on-surface selection:bg-primary/30 font-sans leading-relaxed;
     scroll-behavior: smooth;
   }
 
@@ -20,13 +20,7 @@
 
   /* Themed scrollbar for Webkit */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0a0a0a; }
-  ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
-}
-
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
-  }
+  ::-webkit-scrollbar-track { background: #12151a; }
+  ::-webkit-scrollbar-thumb { background: #262b35; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #5b8c5a; }
 }
