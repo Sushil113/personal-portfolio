@@ -16,7 +16,7 @@ function App() {
     <main className="min-h-screen overflow-x-hidden flex flex-col bg-background text-on-surface">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       
-      <div className="flex-grow pt-28 pb-16 max-w-[720px] mx-auto px-6 w-full flex flex-col justify-center">
+      <div className="flex-grow pt-36 sm:pt-28 pb-16 max-w-[720px] mx-auto px-6 w-full flex flex-col justify-center">
         <Suspense fallback={<div className="flex items-center justify-center min-h-[50vh] text-on-surface-muted font-mono">Loading…</div>}>
           {activeTab === 'about' && <Hero setActiveTab={setActiveTab} />}
           {activeTab === 'experience' && <Experience />}
