@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 
 // Defined outside component — never re-created on re-renders
 const TABS = [
@@ -9,7 +10,7 @@ const TABS = [
   { id: 'education', label: 'Education' },
 ];
 
-const Navbar = memo(({ activeTab, setActiveTab }) => {
+const Navbar = memo(({ activeTab, setActiveTab, theme, toggleTheme }) => {
   const goHome = useCallback(() => setActiveTab('about'), [setActiveTab]);
 
   return (
@@ -41,16 +42,25 @@ const Navbar = memo(({ activeTab, setActiveTab }) => {
             </button>
           ))}
         </div>
-        <button 
-          onClick={() => setActiveTab('contact')}
-          className={`px-4 py-1.5 rounded-[4px] border text-xs font-mono transition-colors ${
-            activeTab === 'contact'
-              ? 'bg-primary text-background border-primary'
-              : 'border-border text-on-surface hover:border-primary hover:text-primary'
-          }`}
-        >
-          Let's Talk
-        </button>
+        <div className="flex items-center">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-1.5 rounded-[4px] border border-border text-on-surface hover:border-primary hover:text-primary transition-colors flex items-center justify-center mr-2.5 bg-transparent"
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+          <button 
+            onClick={() => setActiveTab('contact')}
+            className={`px-4 py-1.5 rounded-[4px] border text-xs font-mono transition-colors ${
+              activeTab === 'contact'
+                ? 'bg-primary text-background border-primary'
+                : 'border-border text-on-surface hover:border-primary hover:text-primary'
+            }`}
+          >
+            Let's Talk
+          </button>
+        </div>
       </div>
       
       {/* Mobile navigation row */}
