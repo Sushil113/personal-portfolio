@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { Sun, Moon } from 'lucide-react';
 
 // Defined outside component — never re-created on re-renders
 const TABS = [
@@ -9,7 +10,7 @@ const TABS = [
   { id: 'education', label: 'Education' },
 ];
 
-const Navbar = memo(({ activeTab, setActiveTab }) => {
+const Navbar = memo(({ activeTab, setActiveTab, theme, toggleTheme }) => {
   const goHome = useCallback(() => setActiveTab('about'), [setActiveTab]);
 
   return (
@@ -23,7 +24,7 @@ const Navbar = memo(({ activeTab, setActiveTab }) => {
         <button onClick={goHome} className="text-lg font-display font-semibold text-on-surface hover:text-primary transition-colors text-left">
           Sushil.
         </button>
-        <div className="hidden md:flex space-x-6 h-full items-center">
+        <div className="hidden sm:flex space-x-6 h-full items-center">
           {TABS.map((tab) => (
             <button
               key={tab.id}
@@ -41,21 +42,30 @@ const Navbar = memo(({ activeTab, setActiveTab }) => {
             </button>
           ))}
         </div>
-        <button 
-          onClick={() => setActiveTab('contact')}
-          className={`px-4 py-1.5 rounded-[4px] border text-xs font-mono hidden md:block transition-colors ${
-            activeTab === 'contact'
-              ? 'bg-primary text-background border-primary'
-              : 'border-border text-on-surface hover:border-primary hover:text-primary'
-          }`}
-        >
-          Let's Talk
-        </button>
+        <div className="flex items-center">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="p-1.5 rounded-[4px] border border-border text-on-surface hover:border-primary hover:text-primary transition-colors flex items-center justify-center mr-2.5 bg-transparent"
+          >
+            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
+          <button 
+            onClick={() => setActiveTab('contact')}
+            className={`px-4 py-1.5 rounded-[4px] border text-xs font-mono transition-colors ${
+              activeTab === 'contact'
+                ? 'bg-primary text-background border-primary'
+                : 'border-border text-on-surface hover:border-primary hover:text-primary'
+            }`}
+          >
+            Let's Talk
+          </button>
+        </div>
       </div>
       
       {/* Mobile navigation row */}
-      <div className="md:hidden flex overflow-x-auto justify-center px-4 py-2 space-x-6 border-b border-border bg-background">
-        {[...TABS, { id: 'contact', label: "Let's Talk" }].map((tab) => (
+      <div className="sm:hidden flex overflow-x-auto justify-start px-6 py-2.5 space-x-6 border-b border-border bg-background no-scrollbar after:w-6 after:flex-shrink-0 after:block">
+        {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}

@@ -175,15 +175,6 @@ export const resumeData = Object.freeze({
   education: [ /* ... */ ]
 });
 ```
-
-### Updating the Profile Photo
-
-Replace the image at `pic/zoro.jpg` with your own photo. Ensure the filename matches the import in `src/components/Hero.jsx`:
-
-```js
-import profileImg from '../../pic/your-photo.jpg';
-```
-
 ---
 
 ## Build Optimization

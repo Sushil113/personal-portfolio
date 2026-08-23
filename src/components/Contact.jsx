@@ -220,7 +220,7 @@ const Contact = () => {
                     value={formData.workType}
                     onChange={handleChange}
                     disabled={status === 'submitting'}
-                    className="w-full bg-background border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 focus:outline-none rounded-[4px] px-3.5 py-2.5 text-sm text-on-surface transition-all font-mono appearance-none cursor-pointer"
+                    className="w-full bg-background border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 focus:outline-none rounded-[4px] px-3.5 py-2.5 text-sm text-on-surface transition-all font-mono appearance-none cursor-pointer custom-select"
                   >
                     {WORK_TYPES.map((type) => (
                       <option key={type.id} value={type.id} className="bg-surface-raised">
@@ -241,7 +241,7 @@ const Contact = () => {
                   value={formData.budget}
                   onChange={handleChange}
                   disabled={status === 'submitting'}
-                  className="w-full bg-background border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 focus:outline-none rounded-[4px] px-3.5 py-2.5 text-sm text-on-surface transition-all font-mono appearance-none cursor-pointer"
+                  className="w-full bg-background border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 focus:outline-none rounded-[4px] px-3.5 py-2.5 text-sm text-on-surface transition-all font-mono appearance-none cursor-pointer custom-select"
                 >
                   {BUDGET_OPTIONS.map((opt) => (
                     <option key={opt.id} value={opt.id} className="bg-surface-raised">
@@ -272,14 +272,14 @@ const Contact = () => {
                 )}
               </div>
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
                 <span className="text-xs font-mono text-on-surface-muted/60">
                   * Required fields
                 </span>
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="px-6 py-2 rounded-[4px] bg-primary text-background font-mono text-xs font-semibold hover:bg-primary/90 transition-colors disabled:opacity-55 disabled:cursor-not-allowed flex items-center space-x-2"
+                  className="w-full sm:w-auto justify-center px-6 py-2 rounded-[4px] bg-primary text-background font-mono text-xs font-semibold hover:bg-primary/90 transition-colors disabled:opacity-55 disabled:cursor-not-allowed flex items-center space-x-2"
                 >
                   {status === 'submitting' ? (
                     <>

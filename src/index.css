@@ -2,9 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-background: 249, 250, 251;      /* #f9fafb */
+  --color-surface: 255, 255, 255;         /* #ffffff */
+  --color-surface-raised: 243, 244, 246;  /* #f3f4f6 */
+  --color-primary: 62, 104, 61;           /* #3e683d (sage green) */
+  --color-accent: 170, 107, 8;            /* #aa6b08 (amber) */
+  --color-on-surface: 18, 21, 26;         /* #12151a */
+  --color-on-surface-muted: 92, 100, 117; /* #5c6475 */
+  --color-border: 229, 231, 235;          /* #e5e7eb */
+  --color-error: 204, 63, 41;             /* #cc3f29 */
+}
+
+html.dark {
+  --color-background: 18, 21, 26;         /* #12151a */
+  --color-surface: 18, 21, 26;            /* #12151a */
+  --color-surface-raised: 26, 30, 38;     /* #1a1e26 */
+  --color-primary: 91, 140, 90;           /* #5b8c5a */
+  --color-accent: 232, 163, 61;           /* #e8a33d */
+  --color-on-surface: 228, 230, 235;      /* #e4e6eb */
+  --color-on-surface-muted: 139, 147, 163;/* #8b93a3 */
+  --color-border: 38, 43, 53;             /* #262b35 */
+  --color-error: 224, 101, 79;            /* #e0654f */
+}
+
 @layer base {
   body {
-    @apply bg-background text-on-surface selection:bg-primary/30 font-sans leading-relaxed;
+    @apply bg-background text-on-surface selection:bg-primary/30 font-sans leading-relaxed transition-colors duration-200;
     scroll-behavior: smooth;
   }
 
@@ -20,7 +44,26 @@
 
   /* Themed scrollbar for Webkit */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #12151a; }
-  ::-webkit-scrollbar-thumb { background: #262b35; border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #5b8c5a; }
+  ::-webkit-scrollbar-track { background: rgba(var(--color-background), 1); }
+  ::-webkit-scrollbar-thumb { background: rgba(var(--color-border), 1); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(var(--color-primary), 1); }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Custom dropdown indicator for select elements with appearance-none */
+  select.custom-select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%238b93a3' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25rem 1.25rem;
+    padding-right: 2.5rem;
+  }
 }

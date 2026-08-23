@@ -30,10 +30,10 @@ const Hero = ({ setActiveTab }) => {
         <h1 className="text-4xl md:text-5xl font-display font-semibold text-on-surface tracking-tight mb-2">
           {name}
         </h1>
-        <h2 className="text-sm md:text-base font-mono text-on-surface-muted flex items-center gap-2 flex-wrap">
+        <h2 className="text-sm md:text-base font-mono text-on-surface-muted flex flex-wrap items-center gap-2">
           <span className="text-primary font-medium">{role}</span>
-          <span className="text-border">|</span>
-          <span>{location}</span>
+          <span className="text-border hidden sm:inline">|</span>
+          <span className="w-full sm:w-auto">{location}</span>
         </h2>
       </div>
 
@@ -61,18 +61,18 @@ const Hero = ({ setActiveTab }) => {
       </div>
 
       {/* Monospaced System Data Details */}
-      <div className="border-t border-border pt-6 mt-12 space-y-2 text-xs font-mono text-on-surface-muted">
-        <div className="flex items-center space-x-2">
+      <div className="border-t border-border pt-6 mt-12 space-y-3 text-xs font-mono text-on-surface-muted">
+        <div className="flex flex-wrap items-baseline gap-x-2">
           <span className="text-primary">email:</span>
-          <a href={`mailto:${email}`} className="hover:underline hover:text-primary">{email}</a>
+          <a href={`mailto:${email}`} className="hover:underline hover:text-primary break-all">{email}</a>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-baseline gap-x-2">
           <span className="text-primary">phone:</span>
           <span>{phone}</span>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-baseline gap-x-2">
           <span className="text-primary">github:</span>
-          <a href={`https://${github}`} target="_blank" rel="noreferrer" className="hover:underline hover:text-primary">{github}</a>
+          <a href={`https://${github}`} target="_blank" rel="noreferrer" className="hover:underline hover:text-primary break-all">{github}</a>
         </div>
       </div>
     </motion.div>
