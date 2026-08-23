@@ -63,6 +63,11 @@ export const resumeData = Object.freeze({
       degree: "Higher Secondary Education (+2)",
       institution: "Arunodaya Secondary School",
       date: "Completed Oct 2019"
+    },
+    {
+      degree: "Secondary Education Examination (SEE)",
+      institution: "Arunodaya Secondary School",
+      date: "Completed 2017"
     }
   ]
 });
