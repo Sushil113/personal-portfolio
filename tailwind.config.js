@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -12,15 +13,15 @@ export default {
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        background: '#12151a',
-        surface: '#12151a',
-        'surface-raised': '#1a1e26',
-        primary: '#5b8c5a',
-        accent: '#e8a33d',
-        'on-surface': '#e4e6eb',
-        'on-surface-muted': '#8b93a3',
-        border: '#262b35',
-        error: '#e0654f',
+        background: 'rgba(var(--color-background), <alpha-value>)',
+        surface: 'rgba(var(--color-surface), <alpha-value>)',
+        'surface-raised': 'rgba(var(--color-surface-raised), <alpha-value>)',
+        primary: 'rgba(var(--color-primary), <alpha-value>)',
+        accent: 'rgba(var(--color-accent), <alpha-value>)',
+        'on-surface': 'rgba(var(--color-on-surface), <alpha-value>)',
+        'on-surface-muted': 'rgba(var(--color-on-surface-muted), <alpha-value>)',
+        border: 'rgba(var(--color-border), <alpha-value>)',
+        error: 'rgba(var(--color-error), <alpha-value>)',
       }
     },
   },
