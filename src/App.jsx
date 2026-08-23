@@ -15,9 +15,6 @@ function App() {
     if (typeof window !== 'undefined' && window.localStorage) {
       const storedTheme = window.localStorage.getItem('color-theme');
       if (storedTheme) return storedTheme;
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
     }
     return 'dark';
   });
