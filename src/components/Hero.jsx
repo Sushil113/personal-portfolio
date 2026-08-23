@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { resumeData } from '../data/resumeData';
-import profileImg from '../../pic/zoro.jpg';
 
 const Hero = ({ setActiveTab }) => {
   const { name, role, summary, location, email, phone, github } = resumeData.personalInfo;
@@ -27,24 +26,15 @@ const Hero = ({ setActiveTab }) => {
       </div>
 
       {/* Profile and Meta */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-8">
-        <img 
-          src={profileImg} 
-          alt={name}
-          fetchpriority="high"
-          decoding="async"
-          className="w-24 h-24 rounded-[4px] border border-border object-cover grayscale"
-        />
-        <div>
-          <h1 className="text-3xl md:text-4xl font-display font-semibold text-on-surface tracking-tight mb-1">
-            {name}
-          </h1>
-          <h2 className="text-base font-mono text-on-surface-muted flex items-center gap-2 flex-wrap">
-            <span className="text-primary">{role}</span>
-            <span className="text-border">|</span>
-            <span>{location}</span>
-          </h2>
-        </div>
+      <div className="mb-8">
+        <h1 className="text-4xl md:text-5xl font-display font-semibold text-on-surface tracking-tight mb-2">
+          {name}
+        </h1>
+        <h2 className="text-sm md:text-base font-mono text-on-surface-muted flex items-center gap-2 flex-wrap">
+          <span className="text-primary font-medium">{role}</span>
+          <span className="text-border">|</span>
+          <span>{location}</span>
+        </h2>
       </div>
 
       {/* Summary */}
