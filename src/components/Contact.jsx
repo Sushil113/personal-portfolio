@@ -16,6 +16,8 @@ const BUDGET_OPTIONS = [
   { id: 'not-applicable', label: 'Not Applicable' },
 ];
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,6 +29,7 @@ const Contact = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
   const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'success' | 'error'
 
   const handleChange = useCallback((e) => {
@@ -40,7 +43,10 @@ const Contact = () => {
         return next;
       });
     }
-  }, [errors]);
+    if (serverError) {
+      setServerError('');
+    }
+  }, [errors, serverError]);
 
   const validate = () => {
     const newErrors = {};
@@ -67,14 +73,27 @@ const Contact = () => {
     }
 
     setStatus('submitting');
+    setServerError('');
 
     try {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const res = await fetch(`${API_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // LOGGING PAYLOAD: Ready to connect to email or Telegram API.
-      // E.g., fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
-      console.log('Form submission successful. Payload:', formData);
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (data.errors) {
+          setErrors(data.errors);
+        }
+        setServerError(data.message || 'Failed to send message. Please try again later.');
+        setStatus('error');
+        return;
+      }
 
       setStatus('success');
       // Reset form
@@ -88,6 +107,7 @@ const Contact = () => {
       });
     } catch (err) {
       console.error(err);
+      setServerError('Unable to connect to the server. Please try again later.');
       setStatus('error');
     }
   };
@@ -128,7 +148,11 @@ const Contact = () => {
               </p>
               <button
                 type="button"
-                onClick={() => setStatus('idle')}
+                onClick={() => {
+                  setStatus('idle');
+                  setServerError('');
+                  setErrors({});
+                }}
                 className="px-4 py-2 border border-border text-on-surface hover:border-primary hover:text-primary transition-colors text-xs font-mono rounded-[4px]"
               >
                 Send Another Message
@@ -148,6 +172,12 @@ const Contact = () => {
                   Fill out this request form to discuss freelance work, job offers, or collaborations.
                 </p>
               </div>
+
+              {serverError && (
+                <div className="p-3 bg-error/10 border border-error/20 text-error text-xs font-mono rounded-[4px]">
+                  {serverError}
+                </div>
+              )}
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -205,7 +235,7 @@ const Contact = () => {
                     value={formData.company}
                     onChange={handleChange}
                     disabled={status === 'submitting'}
-                    placeholder="e.g. WaterFlow Tech"
+                    placeholder="e.g. XYZ Inc."
                     className="w-full bg-background border border-border focus:border-primary/80 focus:ring-1 focus:ring-primary/20 focus:outline-none rounded-[4px] px-3.5 py-2 text-sm text-on-surface placeholder:text-on-surface-muted/30 transition-all font-mono"
                   />
                 </div>
