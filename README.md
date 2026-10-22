@@ -8,7 +8,7 @@ A modern, high-performance personal portfolio website built with **React**, **Ta
 
 This portfolio is a single-page application (SPA) featuring:
 
-- **Smooth tab-based navigation** -- About, Experience, Skills, and Education sections
+- **Smooth tab-based navigation** -- About, Experience, Skills, Education, and Contact sections
 - **Animated transitions** powered by Framer Motion
 - **Fully responsive design** -- optimized for mobile, tablet, and desktop
 - **Optimized performance** -- code-split vendor chunks and lazy-loaded sections
@@ -23,10 +23,10 @@ This portfolio is a single-page application (SPA) featuring:
 |------------------|-------------------------------------------------|
 | **Framework**    | React 18                                        |
 | **Build Tool**   | Vite 7                                          |
-| **Styling**      | Tailwind CSS 3                                  |
+| **Styling**      | Tailwind CSS 4                                  |
 | **Animations**   | Framer Motion 11                                |
 | **Icons**        | Lucide React                                    |
-| **PostCSS**      | Autoprefixer                                    |
+| **CSS Integration** | Tailwind CSS Vite plugin                    |
 | **Deployment**   | GitHub Pages (via GitHub Actions)               |
 
 ---
@@ -43,19 +43,19 @@ personal-portfolio/
 │   │   ├── Hero.jsx          # About / landing section
 │   │   ├── Experience.jsx    # Work experience timeline
 │   │   ├── Skills.jsx        # Technical skills grid
-│   │   └── Education.jsx     # Educational background
+│   │   ├── Education.jsx     # Educational background
+│   │   └── Contact.jsx       # Contact form
 │   ├── data/
 │   │   └── resumeData.js     # Centralized data source (single source of truth)
 │   ├── App.jsx               # Root component with tab routing & layout
 │   ├── main.jsx              # React DOM entry point
-│   └── index.css             # Global styles and Tailwind directives
+│   └── index.css             # Global styles and Tailwind v4 configuration
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml        # GitHub Actions workflow for deployment
 ├── index.html                # HTML entry point
 ├── vite.config.js            # Vite & build configuration
 ├── tailwind.config.js        # Tailwind theme customization
-├── postcss.config.js         # PostCSS configuration
 └── package.json              # Project dependencies & scripts
 ```
 
@@ -115,7 +115,7 @@ The workflow (`.github/workflows/deploy.yml`) does the following on each push to
 
 1. Checks out the repository
 2. Sets up Node.js 22
-3. Installs dependencies (`npm install`)
+3. Installs dependencies (`npm ci`)
 4. Builds the production bundle (`npm run build`)
 5. Uploads the `dist/` directory as a Pages artifact
 6. Deploys to GitHub Pages
