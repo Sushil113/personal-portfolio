@@ -6,7 +6,7 @@ export const resumeData = Object.freeze({
     email: "sushilramtel113@gmail.com",
     phone: "9813868919",
     github: "github.com/Sushil113",
-    summary: "Backend Developer with 2+ years of professional software development experience, specializing in Laravel, PHP, MySQL, and REST API development, along with around 6-7 months of hands-on experience integrating React on the frontend. Focused on writing maintainable code, optimizing application performance, and building scalable, reliable web applications."
+    summary: "Backend Developer with 2+ years of professional software development experience, specializing in Laravel, PHP, MySQL, and RESTful API development, with experience in React-based frontend development. Skilled in building scalable, secure, and maintainable web applications, optimizing application performance, and developing reliable backend systems. Committed to writing clean, efficient code and delivering high-quality software solutions."
   },
   experience: [
     {
@@ -17,7 +17,7 @@ export const resumeData = Object.freeze({
         "Developed and maintained Laravel-based web applications and REST APIs while integrating React components, contributing to improved application functionality and maintainability.",
         "Built and integrated REST APIs to support web applications and frontend components, improving communication between backend services and React interfaces.",
         "Developed responsive and reusable frontend components using React and Bootstrap, integrating them with Laravel-based backend services.",
-        "Optimized backend logic and database queries, contributing to an estimated 10–15% improvement in application response performance.",
+        "Optimized backend logic and database queries, contributing to improved application response performance.",
         "Resolved backend and frontend issues across Laravel and React applications, helping reduce recurring bugs and improve application reliability.",
         "Collaborated remotely with team members throughout the development lifecycle, including requirement analysis, implementation, testing, debugging, and deployment.",
         "Used Git-based development workflows to manage code changes and maintain organized development across features and fixes."
